@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "tfc-crawler"
+version = "0.1.0"
+description = "抓取事實查核中心"
+authors = ["Tuvix Shih <tuvix@ninthday.info>"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+
+[tool.poetry.dev-dependencies]
+black = "^21.12b0"
+pre-commit = "^2.16.0"
+flake8 = "^4.0.1"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
