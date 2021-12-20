@@ -39,16 +39,20 @@ if __name__ == "__main__":
         try:
             response = requests.get(endpoint, params=payload, timeout=15)
             data = json.loads(response.content)
-            for node in data["nodes"]:
-                print(node["node"]["nid"])
+
+            filename = "data/page-{}.json".format(page)
+            with open(filename, "w", encoding="utf8") as pagefile:
+                json.dump(data, pagefile, indent=4, ensure_ascii=False)
+            # for node in data["nodes"]:
+            #     print(node["node"]["nid"])
 
         except requests.exceptions.HTTPError as err:
             print("HTTP exception error: {}".format(err))
         except requests.exceptions.RequestException as e:
             print("Exception error {}".format(e))
         if data.get("pager"):
-            # if int(data["pager"]["page"]) <= int(data["pager"]["pages"]) - 2:
-            if int(data["pager"]["page"]) <= 3:
+            if int(data["pager"]["page"]) <= int(data["pager"]["pages"]) - 2:
+                # if int(data["pager"]["page"]) <= 2:
                 page = int(data["pager"]["page"]) + 1
             else:
                 condition = False
